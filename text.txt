@@ -1,0 +1,709 @@
+\documentclass{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\usepackage[a4paper, total={210mm, 297mm}]{geometry}
+\usepackage{fancyhdr}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{natbib}
+\usepackage{indentfirst}
+\usepackage[titles]{tocloft} %adding table of content package
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref} % Adding Hyperlinks to the table of Contents.
+%setting the page dimension
+\geometry{
+  top=23.4mm,
+  left = 37mm,
+  right = 23.4mm,
+  headheight=3mm,
+  headsep=12mm,
+  bottom=32mm,
+  footskip = 10mm,
+  textheight=245mm,
+  textwidth=160mm
+}
+
+
+
+\begin{document}
+\begin{center}
+\thispagestyle{empty} % Remove page numbering
+\vspace*{\fill} % Vertically center content
+\fontsize{22pt}{27pt}\selectfont\Large\textbf{A Preliminary Report on} 
+
+% Full title of thesis
+\vspace*{\fill} % Vertically center content
+\fontsize{22pt}{27pt}\selectfont Human Body Action Tracking and Detection Using Single Layer Neural Network
+
+\vspace*{\fill}
+\large{\selectfont\textbf{Submitted By}}\\[0.5cm]
+% Full name of the candidate
+\begin{center}
+  {\Large\fontsize{15pt}{18pt}\selectfont 
+  \begin{tabular}{c}
+       Prashik Ramteke  B19040321  \\
+       Siddhi Pawar B19040316 \\
+       Samarthraj Satbhai B19040329\\
+       Sanvidhan Mapare B19040328  \\
+  \end{tabular}}
+
+\vspace*{\fill}
+\large{\selectfont\textbf{Under the guidance of}}\\[0.5cm]
+\Large\fontsize{15pt}{18pt}\selectfont Prof. M. Ingle
+\end{center}
+
+\vspace*{\fill}
+\large{\selectfont\textbf{In Partial Fulfillment of}}\\[0.5cm]
+\LARGE{\textbf{Bachelor of Engineering}}\\
+\LARGE{{[}B. E. Computer Engineering{]}}\\
+\LARGE{{[}May 2023{]}}\\[0.5cm]
+
+\Large{\emph{AT}}\\[0.2cm]
+
+
+% Bottom of the page
+
+%MODIFY THE LOGO/DEPARTMENT NAME/COLLEGE NAME/ADDRESS IF YOU HAVE TO, ELSE LEAVE IT
+\includegraphics[scale=0.5]{JSPM.jpg}\\
+\large{\textbf{Department of Computer Science}}\\
+\LARGE{\textbf{Jspm's Jayawantrao Sawant College of Engineering}}\\
+\Large{\textbf{Hadapsar, Pune 411028}}\\[0.5cm]
+\Large{\textbf{Affiliated to}}\\[0.5cm]
+\includegraphics[scale=5.0]{uop_logo.jpg}\\
+\LARGE{\textbf{Savitribai Phule Pune Univerity}}
+\end{center}
+
+\newpage
+\begin{center}
+\thispagestyle{empty}
+
+\LARGE{\textbf{Jspm's Jayawantrao Sawant College of Engineering}} \\ 
+\large{\textbf{Department of Computer Science}}\\
+\large{\textbf{Hadapsar, Pune  411028}}\\[0.5cm]
+
+\includegraphics[scale=0.5]{JSPM.jpg}\\[0.5cm]
+
+{\Huge \textbf{\emph{CERTIFICATE}}}\\[0.5cm]
+\end{center}
+\linespread{1.13}
+\large{This is to certify that the Dissertation entitled 
+\textbf{``Fake Review Detection Using Machine Learning Model'',} 
+submitted by 
+\textbf{Abhijeet A Rathore, Gayatri L Bhadane, Ankita D Jadhav and Kishor H Dhale}
+ is a record of bonafide work carried out by them, in the partial
+ fulfillment of the requirement for the award of Degree of Bachelor of
+ Engineering (Computer Engineering) at JSPM'S Jayawantrao Sawant College of Engineering, Pune under the University of Pune. Under our guidance, this work is done during the academic year 2022-2023.}\\[1.0cm]
+\large{---------------------------------}\\
+\large{(Prof. Jayshree.D.Muley)}\\[0.3cm]
+\textbf{Project Guide}\\[1.0cm]
+\large{--------------------------------}\hspace*{1.5in}\large{----------------------------------}\\
+\large{Dr Poonam Lambhate}\hspace*{1.8in}\large{Dr. R. D Kanphade}\\[0.3cm]
+\textbf{HOD, Computer Department}\hspace*{1.2in}\textbf{Principal JSCOE}\\[1.0cm]
+\large{External Examiner ------------------------}\\[0.8cm]
+\Large{\textbf{Place:}}\\[0.3cm]
+\Large{\textbf{Date:}}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand\contentsname{\centering Table of Contents}
+\renewcommand\listfigurename{\centering List of Figures}
+
+% Define the page style with the footer
+\fancypagestyle{mypagestyle}{
+    \fancyhf{} % Clear default header and footer
+    \fancyfoot[C]{JSCOE, Department of Computer Engineering 2022-23} % Set the center footer
+    
+    \fancyfoot[R]{\thepage}
+}
+\newpage
+\pagenumbering{roman}
+\thispagestyle{mypagestyle}
+
+%\chapter*{}
+\begin{center}
+% Add dots to table of contents
+\LARGE{\textbf{Acknowledgements}}\\[1cm]
+\end{center}
+\linespread{1.3}
+\large{We would like to express our sincere gratitude to all those who contributed to the successful completion of this project. Our heartfelt thanks go out to our guide, \textbf{Prof J. D. Muley}, Computer Science Department, JSCOE, for their invaluable guidance and support throughout the entire research process. Their expertise and constructive criticism were instrumental in shaping this project and helping us to stay on track.}\\[1cm]
+\large{We would also like to extend our appreciation to the \textbf{JSPMS Jayawantrao Sawant College of Engineering (JSCOE)} for providing us with the necessary resources to carry out this research. Their support was essential in enabling us to complete this project.}\\[1cm]
+\large{Finally, we would like to thank all the participants who volunteered their time and provided us with the data necessary to conduct this research. Without their support, this study was not possible.}\\[1cm]
+\large{Once again, we express our gratitude to all those who have contributed to this project and hope that our findings will be of use to the wider research community.}\\[3cm]
+\large{\hspace*{4.5in} Abhijeet A Rathore}\\[0.25cm]
+\large{\hspace*{4.5in} Gayatri L Bhadane}\\[0.25cm]
+\large{\hspace*{4.5in} Ankita D Jadhav}\\[0.25cm]
+\large{\hspace*{4.5in} Kishor H Dhale}\\[0.25cm]
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+\newpage
+
+
+\thispagestyle{mypagestyle}
+
+\begin{center}
+\LARGE{\textbf{Abstract}}\\[1cm]
+\end{center}
+\linespread{1.3}
+\large{\emph{Detecting human behavior growing in importance in recent years Wide range of applications spread across different applications fields. Awareness of human behavior plays an important role in this People-to-people exchanges and interpersonal relationships Since relationships provide information about identity, personality and mental state of the person. of the human ability to perceive the activities of others one of the major subjects in the natural sciences computer vision and machine learning This research applies to many applications such as video surveillance systems, human-computer interaction, Several duty-free game systems are required action recognition system. Recognition of human behavior It also has very important uses in security systems set up in public places to track down suspects activity or threat. The purpose of this project is Algorithms that can recognize actions such as jogging, Crouching, bowling, jumping, kicking, running, etc. Input video sequence. numerous actions in Video sequences are recognized in each pass Frames of a video sequence.
+\\[1cm]}}
+KEYWORDS:
+Human action recognition, computer vision and machine learning.
+\addcontentsline{toc}{chapter}{Abstract}
+
+\pagestyle{mypagestyle}
+\newpage
+\tableofcontents
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\newpage
+% The main text will follow from this point so set the page numbering
+% to arabic from here on.
+\pagenumbering{arabic}
+% Center-align chapter titles
+\titleformat{\chapter}[display]
+{\huge\bfseries\centering}{\MakeUppercase\chaptertitlename\ \thechapter}{18pt}{\Huge}
+
+% Format section titles
+\titleformat{\section}
+{\fontsize{16pt}{0}\bfseries}{\thesection}{1em}{}
+
+% Format subsection titles
+\titleformat{\subsection}
+{\fontsize{14pt}{0}\bfseries}{\thesubsection}{1em}{}
+
+\titlespacing*{\section}{0pt}{15mm}{15mm} % Set spacing above and below sections
+\titlespacing*{\subsection}{0pt}{15mm}{15mm} % Set spacing above and below subsections
+
+% Set paragraph spacing
+\setlength{\parskip}{2.5ex plus 0.5ex minus 0.2ex}
+
+% Set paragraph indentation
+\setlength{\parindent}{12mm}
+
+\chapter{INTRODUCTION}
+\thispagestyle{mypagestyle}
+\label{chap:intro}
+\section{Inroduction}
+\linespread{1.3cm}
+1.	Introduction
+
+In recent years, Human action recognition (HAR) has evoked considerable interest in the various research areas due to its potential use in proactive computing. A reliable system capable of recognizing various human actions has many important applications such as automated surveillance systems, human computer interaction, smart-home health care systems and control free gaming systems etc. The problem of human action recognition from video sequences was addressed in this project. The aim is to develop an algorithm which can recognize low-level-actions such as Bending, Bowling, Boxing, Jogging, Jumping, Kicking etc. from the input video sequences. Human Action Recognition (HAR) for both depth sequence as well as RGB video sequences was analyzed.
+
+In depth based HAR, two methods were proposed, one uses the local features and the other uses the global features. In both the methods, l1minimization framework was employed for classification. For this SPAMS Software was used.
+
+Action recognition algorithms which use greyscale images are sensitive to illumination changes. But depth information (in depth frames) obtained using Kinect sensors, are independent of these variations. The performance of these methods was tested on the data collected at Video Analytics Lab (VAL database). The’Leave-one-out’ strategy was used for performance evaluation. The results indicate that the features in the global approach give better recognition results compared to the local approach. The parameters such as the number of frames to be averaged, the number of frames to be overlapped, etc. need to be set during the training and testing phase.
+Human activity recognition plays a significant role in human-to-human interaction and interpersonal relations. Because it provides information about the identity of a person, their personality, and their psychological state, it is difficult to extract. The human ability to recognize another person’s activities is one of the main subjects of study in the scientific areas of computer vision and machine learning. As a result of this research, many applications, including video surveillance systems, human-computer interaction, and robotics for human behavior characterization, require a multiple-activity recognition system.
+Among various classification techniques, two main questions arise: “What action?” (i.e., the recognition problem) and “Where in the video?” (i.e., the localization problem). When attempting to recognize human activities, one must determine the kinetic states of a person, so that the computer can efficiently recognize this activity. Human activities, such as “walking” and “running,” arise very naturally in daily life and are relatively easy to recognize. On the other hand, more complex activities, such as “peeling an apple,” are more difficult to identify. Complex activities may be decomposed into other simpler activities, which are generally easier to recognize. Usually, the detection of objects in a scene may help to better understand human activities as it may provide useful information about the ongoing event.
+Most of the work in human activity recognition assumes a figure-centric scene of an uncluttered background, where the actor is free to perform an activity. The development of a fully automated human activity recognition system, capable of classifying a person’s activities with low error, is a challenging task due to problems, such as background clutter, partial occlusion, changes in scale, viewpoint, lighting and appearance, and frame resolution. In addition, annotating behavioral roles is time-consuming and requires knowledge of the specific event. Moreover, intra- and interclass similarities make the problem amply challenging. That is, actions within the same class may be expressed by different people with different body movements, and actions between different classes may be difficult to distinguish as they may be represented by similar information. The way that humans perform an activity depends on their habits, and this makes the problem of identifying the underlying activity quite difficult to determine. Also, the construction of a visual model for learning and analyzing human movements in real time with inadequate benchmark datasets for evaluation is a challenging task.
+To overcome these problems, a task is required that consists of three components, namely: (i) background subtraction in which the system attempts to separate the parts of the image that are invariant over time from the objects that are moving or changing; (ii) human tracking, in which the system locates human motion over time and (iii) human action and object detection, in which the system is able to localize a human activity in an image.
+The goal of human activity recognition is to examine activities from video sequences or still images. Motivated by this fact, human activity recognition systems aim to correctly classify input data into its underlying activity category. Depending on their complexity, human activities are categorized into (i) gestures; (ii) atomic actions; (iii) human-to-object or human-to-human interactions; (iv) group actions; (v) behaviors, and (vi) events.  visualizes the decomposition of human activities according to their complexity.
+Gestures are considered primitive movements of the body parts of a person that may correspond to a particular action of this person. Atomic actions are movements of a person describing a certain motion that may be part of more complex activities. Human-to-object or human-to-human interactions are human activities that involve two or more persons or objects. Group actions are activities performed by a group or persons. Human behaviors refer to physical actions that are associated with the emotions, personality, and psychological state of the individual. Finally, events are high-level activities that describe social actions between individuals and indicate the intention or the social role of a person.
+The rest of the paper is organized as follows: in Section 2, a brief review of previous surveys is presented. Section 3 presents the proposed categorization of human activities. In Sections 4 and 5, we review various human activity recognition methods and analyze the strengths and weaknesses of each category separately. In Section 6, we provide a categorization of human activity.
+
+\newpage
+\chapter{LITERATURE REVIEW}
+\newpage
+
+\section{Literature Review}
+\linespread{1.3}
+Universal Approximation Using Incremental Constructive Feedforward Networks with Random Hidden Nodes," Huang, Guang-Bin, Lei Chen, and Chee-Kheong Siew propose a neural network architecture that employs a constructive approach to gradually add random hidden nodes. This method aims to achieve universal approximation capabilities while reducing the complexity and computational requirements of training the network.\cite{huang2006universal}
+
+Clustering in Extreme Learning Machine Feature Space," authored by Qing He, Xin Jin, Changying Du, Fuzhen Zhuang, and Zhongzhi Shi in 2014, explores the application of Extreme Learning Machines (ELMs) for clustering tasks. The paper investigates the utilization of ELM feature space to perform clustering and proposes an algorithm called C-ELM for effective and efficient clustering. The approach aims to enhance the clustering performance by exploiting the discriminative power of ELMs' hidden layer features.\cite{he2014clustering}
+
+"Dimension Reduction With Extreme Learning Machine," authored by Kasun Liya-naarachchi Lekamalage Chamara, Yan Yang, Guang-Bin Huang, and Zhengyou Zhang in 2016, investigates the application of Extreme Learning Machines (ELMs) for dimensionality reduction tasks. The paper proposes a novel dimension reduction algorithm called ELM-DR, which combines ELMs with unsupervised learning techniques. ELM-DR aims to overcome the limitations of traditional dimensionality reduction methods by leveraging the powerful approximation capabilities of ELMs to effectively capture the underlying structure of high-dimensional data and extract informative low-dimensional representations.\cite{kasun2016dimension}
+
+LU Triangularization Extreme Learning Machine in EEG Cognitive Task Classification," authored by Yakup Kutlu Kutlu, Apdullah Yayık, Esen Yıldırım, and Serdar Yıldırım in 2017, focuses on the application of the LU triangularization technique in Extreme Learning Machines (ELMs) for the classification of cognitive tasks using EEG (electroencephalography) data. The paper introduces a novel approach that combines LU triangularization with ELMs to improve the accuracy and efficiency of cognitive task classification based on EEG signals. \cite{kutlu2019lu}
+
+A Survey on Human Activity Recognition and Classification" by Abhay Gupta, Kuldeep Gupta, Kshama Gupta, and Kapil Gupta, presented at the International Conference on Communication and Signal Processing in July 2020, provides a comprehensive literature review on the topic of human activity recognition and classification. The paper aims to summarize the state-of-the-art techniques, methodologies, and advancements in this field. It surveys various approaches used for activity recognition, including sensor-based methods, machine learning algorithms, deep learning models, and fusion techniques. The review explores the challenges, datasets, evaluation metrics, and applications associated with human activity recognition, providing valuable insights for researchers and practitioners in the field.\cite{yayik2019regularized}
+
+"Human Action Recognition Based on Skeleton and Convolutional Neural Network" by Yusi Yang, Zhuohao Cai, Yingdong Yu, Tong Wu, and Lan Lin, presented at the Photonics Electromagnetics Research Symposium - Fall (PIERS - Fall) in December 2019, conducts a literature survey on the topic of human action recognition using skeleton data and Convolutional Neural Networks (CNNs). The survey explores various approaches and techniques employed in the field, focusing on the utilization of skeleton data and the integration of CNNs for action recognition tasks. It discusses the advantages, challenges, and advancements in this area, providing an overview of the existing research and highlighting the potential future directions for human action recognition using skeleton data and CNNs.\cite{yang2019human}
+
+Subject Identification Using Walking Posture" by Mihaela Hnatiuc, Mirel Paun, and Ambroise lafeuille, presented at the International Conference on Speech Technology and Human-Computer Dialogue (SpeD) in November 2019, focuses on the subject identification based on walking posture. The paper explores the potential of using walking posture as a biometric modality for identifying individuals. It investigates various techniques and algorithms employed for analyzing and recognizing walking patterns to establish subject identification. The research aims to contribute to the development of robust and non-intrusive biometric systems that can utilize walking posture as a reliable identifier in various applications, such as surveillance, security, and access control.\cite{hnatiuc2019subject}
+
+
+"An Overview of Extreme Learning Machine" by Bohua Deng, Xinman Zhang, Weiyong Gong, and Dongpeng Shang, presented at the 4th International Conference on Control, Robotics, and Cybernetics (CRC) in September 2019, provides a comprehensive overview of Extreme Learning Machines (ELMs). The paper discusses the fundamental concepts, principles, and methodologies of ELMs as a machine-learning approach. It explores the advantages, limitations, and applications of ELMs in various domains. The overview covers the architecture, learning algorithm, and optimization techniques used in ELMs. The research aims to provide readers with a clear understanding of ELMs and their potential applications in solving real-world problems.\cite{taksandehuman}
+
+Human Activity Recognition Based on Evolution of Features Selection and Random Forest" by Christine Dewi and Rung-Ching Chen, presented at the 2019 IEEE International Conference on Systems, Man, and Cybernetics (SMC), focuses on human activity recognition using a combination of feature selection and Random Forest algorithm. The paper proposes an approach that utilizes an evolutionary algorithm to select optimal features from sensor data, and then applies the Random Forest classifier for activity recognition. The research aims to improve the accuracy and efficiency of human activity recognition systems by effectively selecting informative features and leveraging the ensemble learning capabilities of Random Forest. The proposed approach offers potential applications in areas such as healthcare monitoring, sports analysis, and human-computer interaction.\cite{dewi2019human}
+
+\newpage
+\chapter{PROPOSED SYSTEM}
+%\section{Problem Statement}
+\newpage
+\section{Problem Statement}
+\linespread{1.3}
+ The goal of this project is to develop a system for human body action tracking and detection using the ELM (Extreme Learning Machine) algorithm. The human body can perform a wide range of actions, such as walking, running, sitting, and standing. Tracking and detecting these actions in real-time can have numerous applications in fields like sports analysis, surveillance, human-computer interaction, and healthcare monitoring.
+ 
+However, accurately, and efficiently tracking and detecting human body actions pose significant challenges. Traditional methods often rely on complex and computationally intensive algorithms, which can be resource-consuming and time-consuming. Additionally, they may struggle to handle variations in body pose, lighting conditions, occlusions, and cluttered backgrounds.
+
+To address these challenges, this project aims to leverage the ELM algorithm for human body action tracking and detection. The ELM algorithm is a fast and efficient machine learning technique known for its ability to handle large-scale data and high-dimensional feature spaces. It has shown promising results in various domains, including image and video analysis.
+
+The specific objectives of this project are as follows:
+
+1. Develop a dataset of annotated videos or image sequences capturing various human body actions, including walking, running, sitting, standing, and potentially more complex actions.
+
+2. Preprocess the dataset to extract relevant features, such as body key points, motion trajectories, or appearance descriptors, to represent each action instance.
+
+3. Implement the ELM algorithm to train a classification model capable of recognizing and distinguishing different human body actions.
+
+4. Design and implement a real-time tracking system that can detect and track human body actions using the trained ELM model.
+
+5. Evaluate the performance of the proposed system by conducting experiments on benchmark datasets or through user studies, considering metrics such as accuracy, precision, recall, and computational efficiency.
+
+6. Compare the performance of the ELM algorithm-based system with existing state-of-the-art methods for human body action tracking and detection.
+
+By addressing these objectives, this project aims to contribute to the field of human body action analysis by providing an efficient and accurate solution for real-time tracking and detection. The resulting system could have practical applications in various domains, including surveillance systems, human-computer interaction, sports analysis, and healthcare monitoring.
+
+\section{Objectives}
+\linespread{1.3}
+The objective of this project is to develop a system for human body action tracking and detection using the ELM (Extreme Learning Machine) algorithm. The specific goals of the project are as follows:
+
+1. Dataset Creation: Develop a dataset of annotated videos or image sequences capturing various human body actions, including walking, running, sitting, standing, and potentially more complex actions. This dataset will serve as the basis for training and evaluating the system.
+
+2. Feature Extraction: Preprocess the dataset to extract relevant features from each action instance. These features may include body keypoints, motion trajectories, appearance descriptors, or any other relevant information that can effectively represent the actions.
+
+3. ELM Algorithm Implementation: Implement the ELM algorithm, a fast and efficient machine learning technique, to train a classification model capable of recognizing and distinguishing different human body actions. The ELM algorithm will be applied using the extracted features as inputs to the model.
+
+4. Real-Time Tracking System: Design and implement a real-time tracking system that can detect and track human body actions using the trained ELM model. The system should be capable of processing video or image streams in real-time and provide accurate and reliable action tracking.
+
+5. Performance Evaluation: Evaluate the performance of the proposed system by conducting experiments on benchmark datasets or through user studies. The system's performance will be assessed using metrics such as accuracy, precision, recall, and computational efficiency.
+
+6. Comparative Analysis: Compare the performance of the ELM algorithm-based system with existing state-of-the-art methods for human body action tracking and detection. This analysis will help assess the effectiveness and advantages of using the ELM algorithm in this context.
+
+By achieving these objectives, the project aims to contribute to the field of human body action analysis by providing an efficient and accurate solution for real-time tracking and detection. The resulting system can have practical applications in various domains, including surveillance systems, human-computer interaction, sports analysis, and healthcare monitoring.
+
+
+\section{Scope of Project}
+\linespread{1.3}
+The scope of the project includes the development of a system for human body action tracking and detection using the ELM (Extreme Learning Machine) algorithm. The project will cover the following aspects:
+
+1. Data Collection and Preprocessing: The project will involve the collection of a dataset consisting of annotated videos or image sequences capturing various human body actions. The dataset will be preprocessed to extract relevant features that represent each action instance.
+
+2. ELM Algorithm Implementation: The ELM algorithm will be implemented to train a classification model for recognizing and distinguishing different human body actions. The algorithm will utilize the extracted features as inputs to the model.
+
+3. Real-Time Tracking System: A real-time tracking system will be designed and implemented to detect and track human body actions using the trained ELM model. The system will process video or image streams in real-time to provide accurate and reliable action tracking.
+
+4. Performance Evaluation: The performance of the proposed system will be evaluated using benchmark datasets or through user studies. Metrics such as accuracy, precision, recall, and computational efficiency will be used to assess the system's performance.
+
+5. Comparative Analysis: The performance of the ELM algorithm-based system will be compared with existing state-of-the-art methods for human body action tracking and detection. This analysis will help us understand the effectiveness and advantages of using the ELM algorithm in this context.
+
+The project scope does not include the development of new machine-learning algorithms or modifications to the ELM algorithm itself. It focuses on utilizing the existing ELM algorithm for human body action tracking and detection.
+
+The project's practical application may include surveillance systems, human computer interaction, sports analysis, and healthcare monitoring. However, the deployment and integration of the developed system into specific application domains may fall beyond the scope of this project and can be considered future work.
+
+
+
+\newpage
+\chapter{SOFTWARE REQUIREMENT AND SPECIFICATION}
+\newpage
+\section{Software Requirement and Specification}
+
+The development of the human body action tracking and detection system using the ELM algorithm will require the following software requirements and specifications:
+
+1. Programming Language: The system can be implemented using a programming language suitable for machine learning and computer vision tasks. Common choices include Python, MATLAB, or C++. Python is recommended due to its extensive libraries and frameworks for machine learning and computer vision.
+
+2. Machine Learning Libraries: Utilize machine learning libraries such as scikit-learn, TensorFlow, or PyTorch to implement the ELM algorithm and train the classification model. These libraries provide efficient tools for training and evaluating machine learning models.
+
+3. Computer Vision Libraries: Employ computer vision libraries such as OpenCV to handle video and image processing tasks. OpenCV provides a wide range of functionalities for tasks like object detection, feature extraction, and video analysis.
+
+4. Dataset Management: Utilize a suitable framework or tool for managing the dataset, including storage, annotation, and retrieval. This can be done using frameworks like TensorFlow Datasets, PyTorch's torchvision, or custom-built data management tools.
+
+5. Development Environment: Set up an integrated development environment (IDE) such as PyCharm, Jupyter Notebook, or Visual Studio Code for code development and debugging. These environments provide convenient features like code completion, debugging tools, and project organization.
+
+6. Version Control: Use a version control system such as Git to manage source code and track changes. This ensures collaboration, code integrity, and easy rollback to previous versions if necessary.
+
+7. Documentation: Employ a documentation tool like Sphinx or Jupyter Notebook for documenting the project, including code documentation, explanations, and tutorials. Clear and comprehensive documentation aids in understanding and maintaining the project.
+
+8. Testing Framework: Utilize a testing framework such as pytest to perform unit tests and ensure the correctness of individual components or functions. Automated tests help identify and fix bugs during the development process.
+
+9. Performance Evaluation: Use appropriate metrics and visualization tools to evaluate the performance of the system. This can include accuracy, precision, recall, F1 score, and visualizations like confusion matrices or action trajectory plots.
+
+10. Deployment Considerations: If deployment is part of the project scope, consider the requirements for the target deployment environment, such as hardware specifications, operating systems, and dependencies. Containerization tools like Docker can facilitate easy deployment and reproducibility.
+
+\newpage
+\chapter{PROJECT PLAN}
+\newpage
+\section{Data Flow Diagram}
+\vspace{10px}
+\begin{figure}[h]
+    \centering
+     \resizebox{150mm}{!} {\includegraphics[scale=1]{project_flowchart.drawio.png}}
+    \caption{Architectural Structure}
+    \label{fig:architecture}
+\end{figure}
+\vspace{20px}
+
+The architectural structure followed to accomplish this project is shown in Figure \ref{fig:architecture}. Different stages of this architecture are described in Section \ref{sec:arc_stages}
+\subsection{Stages of Proposed Architecture} \label{sec:arc_stages}
+\subsubsection{\underline{Data Preprocessing}}
+Data Preprocessing is a major task in machine learning techniques. It is an essential step in machine learning to prepare the raw data that can be used for analysis.
+
+\begin{enumerate}
+    \item{\textbf{Stop Word Removal:}} Stopword removal can help improve the accuracy of the model by reducing the size of the feature matrix and eliminating irrelevant words that may not contribute much to the classification task. For example, common stopwords include words like "the", "and", "in", "of", "a", and "an". These words are typically used frequently in the text but do not provide much insight into the content of the text. By removing these words from the hotel review data, the feature matrix will contain fewer words, making it easier for the model to identify the words that are most relevant to determining whether a review is fake or genuine. The importance of stop word removal describes in \cite{silva2003importance}.
+
+    \item{\textbf{Removing Punctuations:}} Removing punctuations is another important step in data preprocessing in our project, which involves detecting fake hotel reviews. Punctuation marks, such as periods, commas, question marks, and exclamation marks, can add noise to the text and make it harder for the model to identify important features that are relevant to the classification task.
+
+    \item{\textbf{Lemmatization:}} Lemmatization is an important step in natural language processing, which is used to reduce the words to their base form and ultimately helps in reducing the dimensionality of the features space and make it easier for the model to identify important features in the text, Also lemmatization takes into account the context and part of speech of the word. The rule-based approach in lemmatization is used from the source \cite{plisson2004rule}. [Example: The original text is The cats were playing in the garden which can be lemmatized as The cat plays in the garden]. In this example, the word "cats" has been lemmatized to "cat", and "playing" has been reduced to its base form "play".
+
+    \item{\textbf{Tokenization:}} Tokenization is the preprocessing step in natural language processing which splits the text document into individual words or tokens. This is commonly used in text classification tasks such as detecting fake reviews and the technique is used from \cite{webster1992tokenization} [Example: The, hotels, were, very, clean, and, comfortable]. In this example, the text The hotels were very clean and comfortable is split into individual tokens. 
+\end{enumerate}
+
+\subsubsection{\underline{Feature Engineering}}
+Feature engineering is the process of selecting and transforming the raw data into features that can be used as input to a machine learning algorithm. In this study, we examine some of these features and how they affect the functionality of our fake review detection method. In this research, we have used the below features.
+
+\begin{enumerate}
+    \item{\textbf{Bag-of-Words:}} Bag-of-Words is the feature engineering technique that involves representing the text of a review as a set of individual words, without considering their order. Bag-of-Words can be created using a vocabulary of all unique words in our review dataset, and then counting the number of times each word appears in each review. The use of the Bag-of-word technique in the detection of fake reviews is to learn from the resource \cite{mohawesh2021fake}
+
+    \item{\textbf{Sentiment Analysis:}} In this process, we analyze the emotion of a user which is an automated process of understanding the sentiments or opinions of a given text. Sentiment analysis is the natural language processing technique used to determine whether data is positive, negative, or neutral. The analysis of sentiment is applied by using the technique described in \cite{monica2020detection} and in \cite{baishya2021safer}. Textual data is frequently subjected to sentiment analysis, which aids businesses in monitoring the sentiment surrounding their brand and products in customer feedback, as well as comprehending customer requirements.
+
+    \item{\textbf{Lexicon Features:}} When processing text for sentiment analysis, lexicon features can be used to extract information about the sentiment expressed in each document. For example, a simple approach would be to count the number of positive and negative words in each document and use these counts as features in a classification model. The use of lexicon features is applied using the techniques described in \cite{monica2020detection}. More advanced approaches might consider the context in which words appear (e.g., accounting for negations or modifiers) or use more sophisticated scoring methods that take into account the relative strength of different sentiment words.
+\end{enumerate}
+
+\section{Methodology}\label{sec:methodology}
+This project will use machine learning techniques, and natural language processing techniques to identify fake reviews and analyze the main types of opinions faced by online websites, apps, or other online platforms for opinion. We propose to address spamming, which is a serious problem.
+
+Random Forest is an ensemble learning method that combines multiple decision trees to create a more accurate and stable model. The idea behind Random Forest is to generate multiple decision trees on randomly sampled subsets of the training data and then aggregate their predictions to make the final prediction \cite{friedl1997decision}. In our study, we have used Random Forest as a supervised learning algorithm, and we have trained it on a labeled dataset of hotel reviews. During the training phase, the algorithm learns to identify patterns in the features of the reviews that are indicative of fake or genuine reviews. The features include the length of the review, the sentiment of the review, the number of exclamation marks, and the presence of certain keywords, stop words, special characters, and emojis.
+
+Principle Component Analysis (PCA) is a dimensionality reduction technique to transform high-dimensional data into lower-dimensional representation while not losing the variance in the data. In the research \cite{elmogy2021fake}, they worked on SVM without optimal feature extraction and model parameters. In our study, we have used PCA to reduce the dimensionality of the hotel review dataset which contains irrelevant features to a smaller set of principal components. These principal components are linear combinations of the original features that capture the most important information in the data. The accuracy of the model depends on how good the features are provided to it.
+
+Once the dataset is transformed by the PCA, we use Support Vector Machine (SVM) to classify the reviews as fake or genuine. The SVM algorithm plays an important role in text classification using the best hyperplane that maximally separates two classes. In our study, we have used SVMs to learn the decision boundary between fake and genuine reviews based on the transformed dataset. The PCA allows making SVM more efficient and less prone to overfitting because SVM is likely to get stuck in local minima when working with lower-dimensional datasets.
+
+We have used the BERT Model which is a self-attention mechanism and generated the contextualized word embeddings, which are the representations of the word that captures their meaning in context. To use the BERT model in our study we have fine-tuned it on a labeled dataset of hotel reviews. During this fine-tuning phase, the BERT model learns to predict the sentiment of the fake/genuine label of each review based on its input text. Fine-tuning means adjusting the weights and biases to optimize the performance of the model. Once the BERT model has been fine-tuned, we can use it to classify new hotel reviews as fake/genuine. To do this we simply input the text of the review into the BERT model and obtain the prediction based on the output of the final classification layer.
+
+\section{Algorithm Used}
+\subsection{Bidirectional Encoder Representations from Transformers [BERT]}
+BERT is a state-of-the-art natural language processing (NLP) algorithm developed by Google. It has been widely used in various NLP tasks, including text classification, sentiment analysis, named entity recognition, and question-answering.
+
+BERT is a pre-trained language model that uses a transformer architecture. The transformer architecture allows BERT to capture the contextual relationships between words in a sentence by considering both the left and right contexts simultaneously. This bidirectional approach enables BERT to have a deeper understanding of the context and meaning of words, resulting in better performance on NLP tasks.
+
+Here's a brief overview of the BERT algorithm:
+\begin{enumerate}
+    \item{\textbf{Pre-training:}} BERT is pre-trained on a large corpus of unlabeled text data, such as Wikipedia articles or books. During pre-training, BERT learns to predict missing words in a sentence using a technique called masked language modeling. It also learns to understand the relationship between two sentences using a task called next-sentence prediction.
+    \item{\textbf{Tokenization:}} BERT tokenizes input text into subword units called WordPieces. This allows BERT to handle out-of-vocabulary words and capture more fine-grained information.
+    \item{\textbf{Architecture:}} BERT consists of multiple transformer layers. Each transformer layer contains a self-attention mechanism that allows the model to weigh the importance of different words in a sentence based on their relationships with other words. This self-attention mechanism enables BERT to capture long-range dependencies and understand the context of each word. The architectural diagram of BERT is shown in Figure \ref{fig:bert}.
+    \item{\textbf{Fine-tuning:}} After pre-training, BERT is fine-tuned on specific downstream tasks, such as text classification or fake review detection. During fine-tuning, BERT is trained on labeled data for the specific task, and the weights of the pre-trained model are adjusted to optimize performance on that task.
+\end{enumerate}
+
+In the context of our fake review detection project, BERT can be used as a powerful tool for analyzing and detecting fake reviews. By fine-tuning BERT on a labeled dataset of reviews, you can train it to classify whether a given review is fake or genuine based on the patterns and context it has learned during pre-training.
+
+By leveraging BERT's ability to capture contextual relationships and understand the nuances of language, we can enhance the accuracy and effectiveness of our fake review detection system. BERT's pre-trained representations serve as a valuable starting point for various NLP tasks, enabling us to achieve better performance and more reliable results in this project.
+
+\vspace{20px}
+\begin{figure}[h]
+    \centering
+     \resizebox{100mm}{!} {\includegraphics[scale=1]{BERT arch.png}}
+    \caption{BERT Architecture}
+    \label{fig:bert}
+\end{figure}
+\vspace{20px}
+
+\section{Mathematical Model}
+The mathematical model for detecting fake hotel reviews using the traditional NLP model and BERT model can be expressed in the form of an equation as f(x) = y, where x is the feature matrix of the preprocessed dataset, f(x) is the function that maps the input feature matrix to the predicted label y (either fake or genuine or 1 as False and -1 as Real), and y is the binary label assigned to each review. The function f(x) is learned during the model training phase, where the algorithm adjusts its parameters to minimize the classification error on the training dataset.
+
+Also for Support Vector Machine (SVM) with Principle Component Analysis (PCA) as a feature extraction we can represent the mathematical model in the form of the equation as y = f(x) = SVM(PCA(x)), where x represents the input data (the text of a hotel review), PCA(x) represents the reduced feature vector obtained through PCA, and SVM(PCA(x)) represents the predicted output (whether the review is fake or not). The equation shows that the predicted output is obtained by passing the reduced feature vector through an SVM classifier.
+
+\chapter{SYSTEM ARCHITECTURE}
+\section{Architecture Diagram}
+\includegraphics[]
+\vspace{10px}
+\begin{figure}[h]
+    \centering
+     \resizebox{135mm}{!} {\includegraphics[scale=1]{architecture.jpg}}
+    \caption{Interface 1}
+    \label{fig: Architecture Diagram}
+\end{figure}
+Input Video: This is the video data that contains human activities that need to be tracked and detected.
+
+Video Preprocessing: In this step, various preprocessing techniques such as resizing, normalization, and noise reduction can be applied to the input video to improve the quality of the frames.
+
+Human Detection and Tracking: This component utilizes computer vision algorithms to detect and track human bodies in each frame of the video. It aims to identify the regions in the video where humans are present.
+Pose Estimation and Joint Mapping: Once the humans are detected and tracked, pose estimation algorithms are applied to estimate the body poses and map the joints of the human subjects. This step helps in capturing the spatial information of the human body.
+
+Feature Extraction: After obtaining the joint positions, relevant features are extracted from the body poses. These features can include joint angles, joint velocities, or any other representation that captures the dynamics of human actions.
+
+Extreme Learning Machine (ELM): The extracted features are then fed into the ELM algorithm, which is a fast and efficient machine learning algorithm used for classification. ELM trains a single hidden layer feedforward neural network with randomly generated weights to classify the human actions.
+
+Action Classification: The ELM algorithm classifies the input features into different action categories based on the learned model. Each action class represents a specific human activity.
+
+Action Recognition and Output: Finally, the recognized actions are further processed to generate the desired output. This output can be visualized as labels overlaid on the video frames or stored in a separate file for further analysis.
+
+The overall architecture combines computer vision techniques, pose estimation, feature extraction, and machine learning algorithms to track and detect human actions in videos. It enables automated analysis and understanding of human behavior, making it useful for applications such as surveillance, activity recognition, and human-computer interaction.
+\section{Methodology}
+Extreme learning machines are feedforward neural networks for classification, 
+regression, clustering, sparse approximation, compression and feature learning with a single layer or multiple layers of hidden nodes, where the parameters of hidden nodes 
+(not just the weights connecting inputs to hidden nodes) need not be tuned. These 
+hidden nodes can be randomly assigned and never updated (i.e. they are random 
+projection but with nonlinear transforms), or can be inherited from their ancestors 
+without being changed.
+
+In most cases, the output weights of hidden nodes are usually 
+learned in a single step, which essentially amounts to learning a linear model. The name 
+"extreme learning machine" (ELM) was given to such models by its main inventor 
+Guang-Bin Huang.\cite{huang2006universal}ackpropagation. In literature, it also shows that these models can outperform support 
+vector machines in both classification and regression applications. From 2001-2010, 
+ELM research mainly focused on the unified learning framework for "generalized" 
+single-hidden layer feedforward neural networks (SLFNs), including but not limited to 
+sigmoid networks, RBF networks, threshold networks, trigonometric networks, fuzzy 
+inference systems, Fourier series, Laplacian transform, wavelet networks, etc. One 
+significant achievement made in those years is to successfully prove the universal 
+approximation and classification capabilities of ELM in theory.\cite{huang2006universal}
+From 2010 to 2015, ELM research extended to the unified learning framework for 
+kernel learning, SVM and a few typical feature learning methods such as Principal 
+Component Analysis (PCA) and Non-negative Matrix Factorization (NMF). It is shown 
+that SVM actually provides suboptimal solutions compared to ELM, and ELM can 
+provide the Whitebox kernel mapping, which is implemented by ELM random feature 
+mapping, instead of the Blackbox kernel used in SVM. PCA and NMF can be 
+considered as special cases where linear hidden nodes are used in ELM.\cite{he2014clustering},\cite{kasun2016dimension}[2][3]
+From 2015 to 2017, an increased focus has been placed on hierarchical implementations 
+of ELM. Additionally, since 2011, significant biological studies have been made that 
+support certain ELM theories.[4]
+From 2017 onwards, to overcome low-convergence problem during training LU 
+decomposition, Heisenberg decomposition and QR decomposition based approaches 
+with regularization have begun to attract attention.
+[5][6]
+In a 2017 announcement from Google Scholar: "Classic Papers: Articles That Have 
+Stood The Test of Time", two ELM papers have been listed in the "Top 10 in Artificial 
+Intelligence for 2006," taking positions 2 and 7.
+According to their creators, these models are able to produce good generalization 
+performance and learn thousands of times faster than networks trained using 
+
+\section {Algorithm Used}
+\subsection{ELM}
+ELM stands for Extreme Learning Machine, which is a machine learning algorithm introduced by Huang, Guang-Bin in 2006. It is a single-hidden layer feedforward neural network (SLFN) that is known for its fast learning speed and good generalization performance. 
+
+In ELM, the hidden layer of the network is randomly initialized with fixed random weights and biases. The input data is then multiplied by these random weights and passed through a non-linear activation function, such as a sigmoid or a radial basis function. The output weights of the network are obtained analytically using a simple linear regression approach.
+
+Unlike traditional neural networks that require iterative training, ELM trains the network in a single pass. This results in significantly faster training times compared to other methods. ELM has been successfully applied to various machine learning tasks, including classification, regression, and feature learning. Its simplicity and efficiency make it particularly suitable for large-scale problems and real-time applications.
+\subsection{SVM}
+SVM stands for Support Vector Machine, which is a supervised machine learning algorithm used for classification and regression tasks. It is particularly effective in solving binary classification problems but can be extended to handle multi-class classification as well.
+
+The basic idea behind SVM is to find an optimal hyperplane that maximally separates different classes in the input data. This hyperplane is determined by support vectors, which are the data points closest to the decision boundary. SVM aims to find the decision boundary with the largest margin, i.e., the maximum distance between the support vectors of different classes.
+
+In addition to linear separation, SVM can also handle non-linearly separable data by using kernel functions. These functions transform the input data into a higher-dimensional feature space, where linear separation becomes possible. Popular kernel functions used in SVM include the linear kernel, polynomial kernel, Gaussian radial basis function (RBF) kernel, and sigmoid kernel.
+
+The training process of SVM involves solving a convex optimization problem, which minimizes the classification error and maximizes the margin. This is typically achieved using quadratic programming or other optimization techniques. Once the SVM model is trained, it can classify new data points by evaluating which side of the decision boundary they fall on.
+
+SVMs have several advantages, including their ability to handle high-dimensional data, robustness to outliers, and effectiveness in small to medium-sized datasets. They have been widely used in various domains, such as image classification, text categorization, and bioinformatics.
+
+
+\chapter{RESULTS AND ANALYSIS}
+\section{Implementation}
+In this paper, we have presented the technique by which we can identify the human actions being performed in the video input. The literature survey on human action recognition shows that there has been plenty of research in the area of video analysis and
+human action recognition. After the emergence of neural networks, there has been a lot
+of research related to this topic in the past 5-6 years. The Frame-by-Frame application of
+CNNs helped in improving the accuracy as compared to the manual feature extraction
+techniques. After that, 3D-CNNs have further improved the ac- curacy of CNNs by
+processing multiple frames at a time. More recent architecture has started focusing on
+the Extreme Learning Machine (ELM) in order to factor in the temporal component of
+the videos. The most recent architectures have started developing attention mechanisms
+to focus on the important parts of the videos. Human action recognition is still an active
+research area, and new approaches are being presented to solve the issues with the
+current approaches. Some of the existing issues with human action recognition are
+background clutter or fast irregular motion in videos, viewpoint changes, high
+computational complexity, and responsiveness to illumination changes.
+
+\vspace{20px}
+\begin{figure}[h]
+    \centering
+     \resizebox{150mm}{!} {\includegraphics[scale=1]{ui.png}}
+    \caption{User Interface}
+    \label{fig:datasample}
+\end{figure}
+\vspace{20px}
+
+\vspace{20px}
+\begin{figure}[h]
+    \centering
+     \resizebox{150mm}{!} {\includegraphics[scale=1]{crying.png}
+    \caption{User Interface}
+    \label{fig:datasample}
+\end{figure}
+\vspace{20px}
+
+
+
+\section{Statistical Analysis}
+The accuracy of the model was found to be 86\% using a gold standard dataset size of 1600 reviews. This accuracy is much better than the previous works. The dataset contains good data about different reviews such as True Positive, True Negative, False Positive, and False Negative reviews that help to train the model very efficiently. In previous works, many of the researchers used traditional supervised and natural language processing algorithms. Research \cite{mohawesh2021fake} shows that their model doesn't work well when the fake reviews are more realistic than real reviews. Hence to overcome this problem we have used the BERT model along with the Adam optimizer which is based on a stochastic gradient descent algorithm that helps prevent overfitting and improves generalization performance and binary cross-entropy loss function which penalizes the model to produce more confident predictions.
+
+To further evaluate the performance of the model, a confidence threshold of 0.5 was used to classify reviews as either real or fake. Reviews with predicted probabilities below 0.5 were classified as real, while reviews with predicted probabilities greater than or equal to 0.5 were classified as fake. While evaluating the model we get a true positive rate of 77.58\% and a False Positive Rate of 94.84\%. The model predicted the count of fake reviews as 838 and predicted the count of real reviews as 762, so 38 were predicted wrong.
+
+\section{Interface Screenshots}
+\vspace{10px}
+\begin{figure}[h]
+    \centering
+     \resizebox{135mm}{!} {\includegraphics[scale=1]{UI1.png}}
+    \caption{Interface 1}
+    \label{fig:interface1}
+\end{figure}
+
+\newpage
+\vspace{10px}
+\begin{figure}[h]
+    \centering
+     \resizebox{150mm}{!} {\includegraphics[scale=1]{UI2.png}}
+    \caption{Interface 2}
+    \label{fig:interface2}
+\end{figure}
+\vspace{20px}
+
+\vspace{20px}
+\begin{figure}[h]
+    \centering
+     \resizebox{150mm}{!} {\includegraphics[scale=1]{UI3.png}}
+    \caption{Interface 3}
+    \label{fig:interface3}
+\end{figure}
+\vspace{20px}
+
+\newpage
+\chapter{DISCUSSIONS}
+\section{Advantages of the Research}
+\begin{enumerate}
+    \item{\textbf{Cost-effectiveness:}} Since no additional sensors are required, the project eliminates the need for expensive hardware components. This makes it a more affordable solution for implementing human body action tracking and detection compared to sensor-based alternatives.
+    \item{\textbf{Non-intrusive:}} The software-based approach eliminates the need for individuals to wear or carry any physical devices or sensors on their bodies. This non-intrusive nature enhances user comfort and convenience, making it suitable for a wider range of applications.
+    \item{\textbf{Flexibility:}} Without relying on specific sensors, the project can potentially track and detect human body actions in various environments and scenarios. This flexibility allows for versatile implementation across different contexts such as fitness tracking, healthcare monitoring, or gesture-based interfaces.
+    \item{\textbf{Scalability:}} Since the project is software-based, it can be easily deployed and scaled across multiple platforms and devices. It can run on computers, smartphones, or embedded systems, providing a scalable solution that can be adapted to different hardware configurations.
+    \item{\textbf{Real-time tracking:}} By utilizing the ELM algorithm, which is known for its fast learning speed and efficient training process, the project can achieve real-time human body action tracking and detection. This capability is valuable in applications where immediate feedback or response is required, such as gaming or sports performance analysis.
+    \item{\textbf{Ease of deployment:}} The absence of sensors simplifies the deployment process. Users can readily access and utilize the system without the need for any physical setup or calibration, making it user-friendly and reducing the barrier to entry.
+    \item{\textbf{Privacy:}}Since the project relies solely on software, it eliminates potential privacy concerns associated with capturing and storing personal data from sensors. This can be advantageous in situations where privacy is a priority, such as healthcare or surveillance applications.
+    \item{\textbf{{Adaptability:}}The software-based approach allows for easy updates and enhancements. As the ELM algorithm evolves or new research emerges, the project can be improved and updated without requiring changes to hardware components.}
+\end{enumerate}
+
+\section{Limitations}
+\linespread{1.3}
+\begin{enumerate}
+ 
+    \item{\textbf{Lack of Sensor Data:}}Since no sensors are used in this approach, the system relies solely on visual input or other non-sensor-based data sources. This limitation may restrict the accuracy and reliability of the tracking and detection process. Sensor data, such as motion sensors or depth cameras, can provide additional information that enhances the precision of action tracking.
+    \item{\textbf{Environmental Constraints:}} Software-based tracking systems heavily depend on the environment in which they operate. Factors like lighting conditions, occlusions, and background clutter can affect the system's performance. The lack of sensor data means that the system may struggle to handle such environmental constraints, making it less robust in real-world scenarios.
+    \item{\textbf{Limited Accuracy:}} Without the aid of sensors, accurately capturing complex body actions and movements can be challenging. The system might struggle to precisely detect and track subtle gestures or movements, leading to reduced accuracy compared to sensor-based approaches.
+    \item{\textbf{Computational Requirements:}}Software-based tracking and detection algorithms can be computationally intensive, particularly when processing real-time video streams. The ELM algorithm itself requires significant computational resources. Depending on the hardware and software infrastructure, this may limit the system's performance or introduce latency issues.
+    \item{\textbf{Generalization:}} Software-based tracking systems, especially those using machine learning algorithms like ELM, may face challenges in generalizing to different individuals or varying body types. Training the algorithm on a specific dataset might result in reduced accuracy when applied to unseen individuals or diverse populations.
+    \item{\textbf{Scalability:}} Scaling the software-based tracking system to handle multiple individuals or complex scenarios may be difficult. Tracking multiple people simultaneously can increase the complexity and computational demands, potentially leading to degraded performance or reduced accuracy.
+    \item{\textbf{Noise Sensitivity:}}Software-based algorithms can be more sensitive to noise and outliers in the input data compared to sensor-based approaches. Without sensor data to filter out noise or compensate for inaccuracies, the system may struggle to handle noisy or ambiguous visual input effectively.
+   
+\end{enumerate}
+
+\section{Applications}
+\begin{enumerate}
+    \item{\textbf{Surveillance Systems:}} The system can be used in surveillance applications to track and detect human actions within a monitored area. It can be employed for security purposes, such as identifying suspicious activities or detecting unauthorized access in restricted areas.  
+    \item{\textbf{Human-Computer Interaction:}}The software-based system can enable natural and intuitive interaction between humans and computers. It can be utilized in applications like gesture-based control systems, virtual reality environments, or augmented reality interfaces.
+    \item{\textbf{Sports Analysis and Training:}}The system can be applied in sports analysis and training scenarios. It can track and detect specific body actions or movements, providing feedback to athletes or coaches for performance evaluation, technique improvement, or injury prevention.
+    \item{\textbf{Rehabilitation and Physical Therapy:}} The software-based tracking system can be used in rehabilitation and physical therapy settings. It can monitor patients' movements and provide real-time feedback to ensure correct exercise execution, track progress, and assist in the recovery process.
+    \item{\textbf{Entertainment and Gaming:}}The system can be employed in interactive entertainment applications and gaming. It can enable players to control game characters or avatars using their body movements and actions, creating immersive and engaging experiences.
+    \item{\textbf{Virtual Assistants and Robots:}}The software-based tracking and detection system can be integrated into virtual assistants or robots to enhance their capabilities. It can enable robots to understand and respond to human gestures and actions, facilitating human-robot interaction.
+    \item{\textbf{Healthcare and Well-being:}}The system can be utilized in healthcare settings for monitoring patients' movements, detecting falls or irregular activities, and ensuring their well-being. It can be particularly useful for elderly care or individuals with mobility issues.
+\end{enumerate}
+
+\chapter{CONCLUSION}
+\section{Conclusion of this research}
+The project on human body action tracking and detection using a single-layer neural network provides valuable insights into the potential of simple neural network architectures for analyzing human motion. Through the utilization of a single-layer neural network, the project successfully demonstrated the capability to track and detect various human actions. The approach involved training the neural network with labeled motion data, extracting features, and performing classification tasks. The results showed promising accuracy rates, indicating the effectiveness of the single-layer neural network in action recognition. 
+
+This approach offers a computationally efficient and lightweight solution, making it suitable for real-time applications and resource-constrained environments. However, it is important to note that the performance of the system may be limited compared to more complex neural network architectures in handling complex action sequences or dealing with noisy or ambiguous data. Further research and experimentation are necessary to optimize and expand the capabilities of the single-layer neural network approach for human body action tracking and detection.
+
+\section{Future Scope}
+The future scope of this research can be explained as Cross-domain transfer learning in which the model could be trained on different domains like fake news detection, Exploring the impact to socio-political factors in which a model can explore how socio-political factors impact the spread of fake news and how these factors can be taken into account in fake news detection models, Investigating ethical implications in which a model will investigate how to address the fake news detection concerns such as the potential for bias and censorship and ensure that fake news detection systems are fair and unbiased.
+\newpage
+\bibliographystyle{ieeetr}
+\bibliography{ref}
+
+\appendix
+\chapter{ANNEXURE I}
+\section{Published Paper 1}
+\includepdf[
+  pages=-,
+  offset=0mm 0mm,
+  width=\paperwidth-37mm-23.4mm,
+  pagecommand={\thispagestyle{plain}},
+]{papers/Paper1.pdf}
+\newpage
+\section{Published Paper 2}
+\vspace{-\baselineskip}
+\includepdf[
+  pages=-,
+  offset=0mm 0mm,
+  width=\paperwidth-37mm-23.4mm,
+  pagecommand={\thispagestyle{plain}},
+]{papers/Paper2.pdf}
+
+\appendix
+\chapter{ANNEXURE II}
+\section{Certificates of Paper 1}
+\begin{figure}[h]
+    \centering
+     \resizebox{110mm}{!} {\includegraphics[scale=1]{papers/Certificates/Abhijeet A Rathore.jpg}}
+    \caption{Certificate Author 1}
+    \label{fig:aj1}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+    \centering
+     \resizebox{110mm}{!} {\includegraphics[scale=1]{papers/Certificates/Gayatri L Bhadane.jpg}}
+    \caption{Certificate Author 2}
+    \label{fig:aj2}
+\end{figure}
+\vspace{20px}
+\begin{figure}[h]
+    \centering
+     \resizebox{110mm}{!} {\includegraphics[scale=1]{papers/Certificates/Ankita D Jadhav.jpg}}
+    \caption{Certificate Author 3}
+    \label{fig:aj3}
+\end{figure}
+\newpage
+\begin{figure}[h]
+    \centering
+     \resizebox{100mm}{!} {\includegraphics[scale=1]{papers/Certificates/Kishor H Dhale.jpg}}
+    \caption{Certificate Author 4}
+    \label{fig:aj4}
+\end{figure}
+
+\section{Certificates of Paper 2}
+\begin{figure}[h]
+    \centering
+     \resizebox{100mm}{!} {\includegraphics[scale=1]{papers/Certificates/Author 1-1.png}}
+    \caption{Certificate Author 1}
+    \label{fig:a1}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+    \centering
+     \resizebox{100mm}{!} {\includegraphics[scale=1]{papers/Certificates/A2-1.png}}
+    \caption{Certificate Author 2}
+    \label{fig:a2}
+\end{figure}
+\vspace{30em}
+\begin{figure}[h]
+    \centering
+     \resizebox{100mm}{!} {\includegraphics[scale=1]{papers/Certificates/A3-1.png}}
+    \caption{Certificate Author 3}
+    \label{fig:a3}
+\end{figure}
+\newpage
+\begin{figure}[h]
+    \centering
+     \resizebox{100mm}{!} {\includegraphics[scale=1]{papers/Certificates/A5-1.png}}
+    \caption{Certificate Author 4}
+    \label{fig:a4}
+\end{figure}
+
+\appendix
+\chapter{ANNEXURE III}
+\section{Base Paper 1}
+\includepdf[
+  pages=-,
+  offset=0mm 0mm,
+  width=\paperwidth-37mm-23.4mm,
+  pagecommand={\thispagestyle{plain}},
+]{papers/Paper_69-Base.pdf}
+
+\section{Base Paper 2}
+\includepdf[
+  pages=-,
+  offset=0mm 0mm,
+  width=\paperwidth-37mm-23.4mm,
+  pagecommand={\thispagestyle{plain}},
+]{papers/Base 2.pdf}
+\end{document}
